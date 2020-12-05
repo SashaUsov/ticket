@@ -27,6 +27,4 @@ public class CommentModel {
 
     private String comment;
 
-    private Long ticketId;
-
 }

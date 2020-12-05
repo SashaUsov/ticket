@@ -41,7 +41,7 @@ public class Ticket {
     @Column(name = "description")
     private String description;
 
-    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<TicketComment> comment;
 
     @Column(name = "status")
