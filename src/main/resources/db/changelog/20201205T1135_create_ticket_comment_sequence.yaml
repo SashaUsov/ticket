@@ -1,0 +1,10 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: create_seq_t_com_id
+      author: sasha_usov
+      changes:
+        - createSequence:
+            incrementBy: 1
+            sequenceName: seq_t_com_id
+            startValue: 1

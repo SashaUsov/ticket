@@ -4,3 +4,7 @@ databaseChangeLog:
       file: db/changelog/20201205T1101_create_ticket_table.yaml
   - include:
       file: db/changelog/20201205T1112_create_ticket_comment_table.yaml
+  - include:
+      file: db/changelog/20201205T1134_create_ticket_sequence.yaml
+  - include:
+      file: db/changelog/20201205T1135_create_ticket_comment_sequence.yaml
