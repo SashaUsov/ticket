@@ -1,0 +1,6 @@
+databaseChangeLog:
+
+  - include:
+      file: db/changelog/20201205T1101_create_ticket_table.yaml
+  - include:
+      file: db/changelog/20201205T1112_create_ticket_comment_table.yaml
