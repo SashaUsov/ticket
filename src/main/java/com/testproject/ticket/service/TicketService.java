@@ -1,6 +1,5 @@
 package com.testproject.ticket.service;
 
-import com.testproject.ticket.Util;
 import com.testproject.ticket.domain.Ticket;
 import com.testproject.ticket.domain.dto.ticket.TicketModeDelete;
 import com.testproject.ticket.domain.dto.ticket.TicketModel;
@@ -10,6 +9,7 @@ import com.testproject.ticket.exception.DataIsNotCorrectException;
 import com.testproject.ticket.exception.EntityNotFoundException;
 import com.testproject.ticket.exception.PermissionToActionIsAbsentException;
 import com.testproject.ticket.repository.TicketRepository;
+import com.testproject.ticket.utils.Util;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,7 +17,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.testproject.ticket.Util.*;
+import static com.testproject.ticket.utils.Util.*;
 
 @Service
 public class TicketService {

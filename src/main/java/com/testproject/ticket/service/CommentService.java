@@ -15,7 +15,7 @@ import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import static com.testproject.ticket.Util.*;
+import static com.testproject.ticket.utils.Util.*;
 
 @Service
 @FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)

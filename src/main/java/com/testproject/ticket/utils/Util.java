@@ -1,4 +1,4 @@
-package com.testproject.ticket;
+package com.testproject.ticket.utils;
 
 import com.testproject.ticket.domain.Ticket;
 import com.testproject.ticket.domain.TicketComment;

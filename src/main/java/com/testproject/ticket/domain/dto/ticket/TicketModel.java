@@ -10,6 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
@@ -38,4 +39,24 @@ public class TicketModel {
     @Enumerated(EnumType.STRING)
     private TicketStatus status;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TicketModel that = (TicketModel) o;
+        return id.equals(that.id) &&
+                createdDate.equals(that.createdDate) &&
+                createdBy.equals(that.createdBy) &&
+                Objects.equals(lastModifiedDate, that.lastModifiedDate) &&
+                Objects.equals(lastModifiedBy, that.lastModifiedBy) &&
+                Objects.equals(date, that.date) &&
+                Objects.equals(description, that.description) &&
+                Objects.equals(comment, that.comment) &&
+                status == that.status;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, createdDate, createdBy, lastModifiedDate, lastModifiedBy, date, description, comment, status);
+    }
 }
