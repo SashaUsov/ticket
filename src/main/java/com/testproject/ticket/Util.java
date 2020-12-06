@@ -90,4 +90,20 @@ public class Util {
 
         return entity;
     }
+
+    public static TicketComment createUpdateCommentModel(CommentModelEdit modelEdit, TicketComment entity) {
+        var updateModel = new TicketComment();
+        updateModel.setId(entity.getId());
+        updateModel.setTicket(entity.getTicket());
+        updateModel.setLastModifiedBy(modelEdit.getCreatedBy());
+        updateModel.setLastModifiedDate(LocalDateTime.now());
+        updateModel.setCreatedDate(entity.getCreatedDate());
+        updateModel.setCreatedBy(entity.getCreatedBy());
+        updateModel.setComment(modelEdit.getComment());
+        var date = modelEdit.getDate() != null ?
+                modelEdit.getDate() : entity.getDate();
+        updateModel.setDate(date);
+
+        return updateModel;
+    }
 }
