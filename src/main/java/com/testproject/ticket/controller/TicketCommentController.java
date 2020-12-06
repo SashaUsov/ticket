@@ -1,5 +1,6 @@
 package com.testproject.ticket.controller;
 
+import com.testproject.ticket.domain.dto.CommentModeDelete;
 import com.testproject.ticket.domain.dto.CommentModel;
 import com.testproject.ticket.domain.dto.CommentModelCreate;
 import com.testproject.ticket.domain.dto.CommentModelEdit;
@@ -29,5 +30,11 @@ public class TicketCommentController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public CommentModel editTicket(@RequestBody @Valid CommentModelEdit modelEdit) {
         return commentService.editComment(modelEdit);
+    }
+
+    @DeleteMapping("delete")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void deleteTicket(@RequestBody @Valid CommentModeDelete modelDelete) {
+        commentService.deleteComment(modelDelete);
     }
 }
