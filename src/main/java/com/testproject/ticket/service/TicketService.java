@@ -1,13 +1,11 @@
 package com.testproject.ticket.service;
 
 import com.testproject.ticket.Util;
-import com.testproject.ticket.domain.Ticket;
 import com.testproject.ticket.domain.dto.TicketModel;
 import com.testproject.ticket.domain.dto.TicketModelCreate;
 import com.testproject.ticket.domain.dto.TicketModelEdit;
 import com.testproject.ticket.exception.DataIsNotCorrectException;
-import com.testproject.ticket.exception.TicketNotFoundException;
-import com.testproject.ticket.exception.TicketsNotFoundException;
+import com.testproject.ticket.exception.EntityNotFoundException;
 import com.testproject.ticket.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,7 +39,7 @@ public class TicketService {
         if (!ticketList.isEmpty()) {
             return ticketList.stream().map(Util::prepareTicketEntityToTransferModel)
                     .sorted(Comparator.comparing(TicketModel::getId)).collect(Collectors.toList());
-        } else throw new TicketsNotFoundException("Tickets not found.");
+        } else throw new EntityNotFoundException("Tickets not found.");
     }
 
     @Transactional
@@ -51,9 +49,11 @@ public class TicketService {
 
     @Transactional
     public TicketModel editTicket(TicketModelEdit modelEdit) {
-        var ticket = ticketRepository.findById(modelEdit.getId());
-        var entity = ticket.orElseThrow(() -> new TicketNotFoundException("Ticket not found"));
-        Ticket updateModel = createUpdateTicketModel(modelEdit, entity);
-        return prepareTicketEntityToTransferModel(ticketRepository.save(updateModel));
+        if (modelEdit != null) {
+            var ticket = ticketRepository.findById(modelEdit.getId());
+            var entity = ticket.orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
+            var updateModel = createUpdateTicketModel(modelEdit, entity);
+            return prepareTicketEntityToTransferModel(ticketRepository.save(updateModel));
+        } else throw new DataIsNotCorrectException("Check the correctness of the entered data and try again.");
     }
 }
