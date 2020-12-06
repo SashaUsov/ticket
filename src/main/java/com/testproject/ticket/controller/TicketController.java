@@ -2,6 +2,7 @@ package com.testproject.ticket.controller;
 
 import com.testproject.ticket.domain.dto.TicketModel;
 import com.testproject.ticket.domain.dto.TicketModelCreate;
+import com.testproject.ticket.domain.dto.TicketModelEdit;
 import com.testproject.ticket.service.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ public class TicketController {
 
     @PostMapping("create")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public TicketModel createTicket(@Valid @RequestBody TicketModelCreate modelCreate) {
+    public TicketModel createTicket(@RequestBody @Valid TicketModelCreate modelCreate) {
         return ticketService.create(modelCreate);
     }
 
@@ -35,5 +36,11 @@ public class TicketController {
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void deleteTicket(@PathVariable("id") Long id) {
         ticketService.deleteById(id);
+    }
+
+    @PutMapping("edit")
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public TicketModel editTicket(@RequestBody @Valid TicketModelEdit modelEdit) {
+        return ticketService.editTicket(modelEdit);
     }
 }

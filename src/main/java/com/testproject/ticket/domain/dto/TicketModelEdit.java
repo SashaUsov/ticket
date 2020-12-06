@@ -11,23 +11,21 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class CommentModelCreate {
+public class TicketModelEdit {
+
+    @NotNull
+    private long id;
 
     @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
-    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(as = LocalDateTime.class)
     private LocalDateTime date;
 
-    @NotNull
-    @NotEmpty
-    private Long ticketId;
+    private String description;
 
-    @NotNull
-    @NotEmpty(message = "Please provide a comment to the ticket")
-    private String comment;
+    private String status;
 
 }

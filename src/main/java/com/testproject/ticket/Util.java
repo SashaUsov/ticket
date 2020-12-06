@@ -6,6 +6,7 @@ import com.testproject.ticket.domain.TicketStatus;
 import com.testproject.ticket.domain.dto.CommentModel;
 import com.testproject.ticket.domain.dto.TicketModel;
 import com.testproject.ticket.domain.dto.TicketModelCreate;
+import com.testproject.ticket.domain.dto.TicketModelEdit;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -60,5 +61,24 @@ public class Util {
         model.setLastModifiedDate(entity.getLastModifiedDate());
 
         return model;
+    }
+
+    public static Ticket createUpdateTicketModel(TicketModelEdit modelEdit, Ticket entity) {
+        var updateModel = new Ticket();
+        updateModel.setId(entity.getId());
+        updateModel.setLastModifiedBy(modelEdit.getCreatedBy());
+        updateModel.setLastModifiedDate(LocalDateTime.now());
+        updateModel.setCreatedBy(entity.getCreatedBy());
+        updateModel.setCreatedDate(entity.getCreatedDate());
+        var ticketStatus = modelEdit.getStatus() != null && !modelEdit.getStatus().isEmpty() ?
+                TicketStatus.valueOf(modelEdit.getStatus().toUpperCase()) : entity.getStatus();
+        updateModel.setStatus(ticketStatus);
+        var description = modelEdit.getDescription() != null && !modelEdit.getDescription().isEmpty() ?
+                modelEdit.getDescription() : entity.getDescription();
+        updateModel.setDescription(description);
+        var date = modelEdit.getDate() != null ?
+                modelEdit.getDate() : entity.getDate();
+        updateModel.setDate(date);
+        return updateModel;
     }
 }

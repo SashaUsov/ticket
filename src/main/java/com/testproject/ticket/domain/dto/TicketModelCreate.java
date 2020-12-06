@@ -17,8 +17,7 @@ public class TicketModelCreate {
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
-    @NotNull
-    @NotEmpty
+    @NotNull(message = "Please enter date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(as = LocalDateTime.class)
     private LocalDateTime date;
