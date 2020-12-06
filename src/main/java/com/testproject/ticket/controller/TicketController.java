@@ -1,5 +1,6 @@
 package com.testproject.ticket.controller;
 
+import com.testproject.ticket.domain.dto.TicketModeDelete;
 import com.testproject.ticket.domain.dto.TicketModel;
 import com.testproject.ticket.domain.dto.TicketModelCreate;
 import com.testproject.ticket.domain.dto.TicketModelEdit;
@@ -32,10 +33,10 @@ public class TicketController {
         return ticketService.getAll();
     }
 
-    @DeleteMapping("delete/{id}")
+    @DeleteMapping("delete")
     @ResponseStatus(HttpStatus.ACCEPTED)
-    public void deleteTicket(@PathVariable("id") Long id) {
-        ticketService.deleteById(id);
+    public void deleteTicket(@RequestBody @Valid TicketModeDelete deleteModel) {
+        ticketService.deleteById(deleteModel);
     }
 
     @PutMapping("edit")

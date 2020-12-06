@@ -1,11 +1,14 @@
 package com.testproject.ticket.service;
 
 import com.testproject.ticket.Util;
+import com.testproject.ticket.domain.Ticket;
+import com.testproject.ticket.domain.dto.TicketModeDelete;
 import com.testproject.ticket.domain.dto.TicketModel;
 import com.testproject.ticket.domain.dto.TicketModelCreate;
 import com.testproject.ticket.domain.dto.TicketModelEdit;
 import com.testproject.ticket.exception.DataIsNotCorrectException;
 import com.testproject.ticket.exception.EntityNotFoundException;
+import com.testproject.ticket.exception.PermissionToActionIsAbsentException;
 import com.testproject.ticket.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,17 +46,27 @@ public class TicketService {
     }
 
     @Transactional
-    public void deleteById(Long id) {
-        ticketRepository.deleteById(id);
+    public void deleteById(TicketModeDelete deleteModel) {
+        if (deleteModel != null) {
+            var entity = findTicket(deleteModel.getId());
+            if (entity.getCreatedBy().equals(deleteModel.getCreatedBy())) {
+                ticketRepository.deleteById(deleteModel.getId());
+            } else
+                throw new PermissionToActionIsAbsentException("You cannot delete a ticket that you are not the author of");
+        } else throw new DataIsNotCorrectException("Check the correctness of the entered data and try again.");
     }
 
     @Transactional
     public TicketModel editTicket(TicketModelEdit modelEdit) {
         if (modelEdit != null) {
-            var ticket = ticketRepository.findById(modelEdit.getId());
-            var entity = ticket.orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
+            var entity = findTicket(modelEdit.getId());
             var updateModel = createUpdateTicketModel(modelEdit, entity);
             return prepareTicketEntityToTransferModel(ticketRepository.save(updateModel));
         } else throw new DataIsNotCorrectException("Check the correctness of the entered data and try again.");
+    }
+
+    private Ticket findTicket(long id) {
+        var ticket = ticketRepository.findById(id);
+        return ticket.orElseThrow(() -> new EntityNotFoundException("Ticket not found"));
     }
 }
