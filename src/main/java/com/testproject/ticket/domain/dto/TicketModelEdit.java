@@ -14,9 +14,8 @@ import java.time.LocalDateTime;
 public class TicketModelEdit {
 
     @NotNull
-    private long id;
+    private Long id;
 
-    @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
@@ -27,5 +26,4 @@ public class TicketModelEdit {
     private String description;
 
     private String status;
-
 }

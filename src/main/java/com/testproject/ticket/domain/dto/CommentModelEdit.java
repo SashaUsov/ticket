@@ -14,9 +14,8 @@ import java.time.LocalDateTime;
 public class CommentModelEdit {
 
     @NotNull
-    private long id;
+    private Long id;
 
-    @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
@@ -24,7 +23,6 @@ public class CommentModelEdit {
     @JsonDeserialize(as = LocalDateTime.class)
     private LocalDateTime date;
 
-    @NotNull
     @NotEmpty(message = "Please enter your comment")
     private String comment;
 }

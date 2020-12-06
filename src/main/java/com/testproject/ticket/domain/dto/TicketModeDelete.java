@@ -11,9 +11,8 @@ import javax.validation.constraints.NotNull;
 public class TicketModeDelete {
 
     @NotNull
-    private long id;
+    private Long id;
 
-    @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 }

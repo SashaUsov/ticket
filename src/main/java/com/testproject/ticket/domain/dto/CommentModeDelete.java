@@ -10,10 +10,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 public class CommentModeDelete {
 
-    @NotNull
-    private long id;
+    @NotNull(message = "Please enter comment id")
+    private Long id;
 
-    @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 }

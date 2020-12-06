@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 public class TicketModelCreate {
 
-    @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
@@ -22,11 +21,9 @@ public class TicketModelCreate {
     @JsonDeserialize(as = LocalDateTime.class)
     private LocalDateTime date;
 
-    @NotNull
     @NotEmpty(message = "Please provide a description of the ticket")
     private String description;
 
-    @NotNull
     @NotEmpty(message = "Please indicate current status")
     private String status;
 

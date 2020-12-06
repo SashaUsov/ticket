@@ -13,7 +13,6 @@ import java.time.LocalDateTime;
 @Setter
 public class CommentModelCreate {
 
-    @NotNull
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
@@ -25,7 +24,6 @@ public class CommentModelCreate {
     @NotNull
     private Long ticketId;
 
-    @NotNull
     @NotEmpty(message = "Please provide a comment to the ticket")
     private String comment;
 
