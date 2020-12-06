@@ -1,5 +1,6 @@
 package com.testproject.ticket.service;
 
+import com.testproject.ticket.domain.TicketComment;
 import com.testproject.ticket.domain.dto.CommentModeDelete;
 import com.testproject.ticket.domain.dto.CommentModel;
 import com.testproject.ticket.domain.dto.CommentModelCreate;
@@ -42,10 +43,10 @@ public class CommentService {
         } else throw new DataIsNotCorrectException("Check the correctness of the entered data and try again.");
     }
 
+    @Transactional
     public CommentModel editComment(CommentModelEdit modelEdit) {
         if (modelEdit != null) {
-            var comment = commentRepository.findById(modelEdit.getId());
-            var entity = comment.orElseThrow(() -> new EntityNotFoundException("Comment not found"));
+            var entity = findTicketComment(modelEdit.getId());
             var updateModel = createUpdateCommentModel(modelEdit, entity);
             return prepareCommentEntityToTransferModel(commentRepository.save(updateModel));
         }
@@ -55,11 +56,16 @@ public class CommentService {
     @Transactional
     public void deleteComment(CommentModeDelete deleteModel) {
         if (deleteModel != null) {
-            var comment = commentRepository.findById(deleteModel.getId());
-            var entity = comment.orElseThrow(() -> new EntityNotFoundException("Comment not found"));
+            var entity = findTicketComment(deleteModel.getId());
             if (entity.getCreatedBy().equals(deleteModel.getCreatedBy())) {
                 commentRepository.deleteById(deleteModel.getId());
-            } else throw new PermissionToActionIsAbsentException("You cannot delete a comment that you are not the author of");
+            } else
+                throw new PermissionToActionIsAbsentException("You cannot delete a comment that you are not the author of");
         } else throw new DataIsNotCorrectException("Check the correctness of the entered data and try again.");
+    }
+
+    private TicketComment findTicketComment(long id) {
+        var comment = commentRepository.findById(id);
+        return comment.orElseThrow(() -> new EntityNotFoundException("Comment not found"));
     }
 }
