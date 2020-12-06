@@ -8,11 +8,11 @@ import com.testproject.ticket.domain.dto.TicketModelEdit;
 import com.testproject.ticket.exception.DataIsNotCorrectException;
 import com.testproject.ticket.exception.TicketNotFoundException;
 import com.testproject.ticket.exception.TicketsNotFoundException;
-import com.testproject.ticket.repository.TicketCommentRepository;
 import com.testproject.ticket.repository.TicketRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,11 +23,8 @@ public class TicketService {
 
     private final TicketRepository ticketRepository;
 
-    private final TicketCommentRepository commentRepository;
-
-    public TicketService(TicketRepository ticketRepository, TicketCommentRepository commentRepository) {
+    public TicketService(TicketRepository ticketRepository) {
         this.ticketRepository = ticketRepository;
-        this.commentRepository = commentRepository;
     }
 
     public TicketModel create(TicketModelCreate modelCreate) {
@@ -43,7 +40,7 @@ public class TicketService {
         var ticketList = ticketRepository.findAll();
         if (!ticketList.isEmpty()) {
             return ticketList.stream().map(Util::prepareTicketEntityToTransferModel)
-                    .collect(Collectors.toList());
+                    .sorted(Comparator.comparing(TicketModel::getId)).collect(Collectors.toList());
         } else throw new TicketsNotFoundException("Tickets not found.");
     }
 
