@@ -1,9 +1,9 @@
 package com.testproject.ticket.controller;
 
-import com.testproject.ticket.domain.dto.CommentModeDelete;
-import com.testproject.ticket.domain.dto.CommentModel;
-import com.testproject.ticket.domain.dto.CommentModelCreate;
-import com.testproject.ticket.domain.dto.CommentModelEdit;
+import com.testproject.ticket.domain.dto.comment.CommentModeDelete;
+import com.testproject.ticket.domain.dto.comment.CommentModel;
+import com.testproject.ticket.domain.dto.comment.CommentModelCreate;
+import com.testproject.ticket.domain.dto.comment.CommentModelEdit;
 import com.testproject.ticket.service.CommentService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

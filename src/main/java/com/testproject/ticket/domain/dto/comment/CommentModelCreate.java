@@ -1,4 +1,4 @@
-package com.testproject.ticket.domain.dto;
+package com.testproject.ticket.domain.dto.comment;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -11,19 +11,20 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class TicketModelEdit {
-
-    @NotNull
-    private Long id;
+public class CommentModelCreate {
 
     @NotEmpty(message = "Please enter your name")
     private String createdBy;
 
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonDeserialize(as = LocalDateTime.class)
     private LocalDateTime date;
 
-    private String description;
+    @NotNull
+    private Long ticketId;
 
-    private String status;
+    @NotEmpty(message = "Please provide a comment to the ticket")
+    private String comment;
+
 }

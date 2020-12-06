@@ -1,9 +1,9 @@
 package com.testproject.ticket.controller;
 
-import com.testproject.ticket.domain.dto.TicketModeDelete;
-import com.testproject.ticket.domain.dto.TicketModel;
-import com.testproject.ticket.domain.dto.TicketModelCreate;
-import com.testproject.ticket.domain.dto.TicketModelEdit;
+import com.testproject.ticket.domain.dto.ticket.TicketModeDelete;
+import com.testproject.ticket.domain.dto.ticket.TicketModel;
+import com.testproject.ticket.domain.dto.ticket.TicketModelCreate;
+import com.testproject.ticket.domain.dto.ticket.TicketModelEdit;
 import com.testproject.ticket.service.TicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

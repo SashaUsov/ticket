@@ -1,4 +1,4 @@
-package com.testproject.ticket.domain.dto;
+package com.testproject.ticket.domain.dto.ticket;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;

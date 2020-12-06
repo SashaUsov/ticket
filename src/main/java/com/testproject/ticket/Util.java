@@ -3,7 +3,12 @@ package com.testproject.ticket;
 import com.testproject.ticket.domain.Ticket;
 import com.testproject.ticket.domain.TicketComment;
 import com.testproject.ticket.domain.TicketStatus;
-import com.testproject.ticket.domain.dto.*;
+import com.testproject.ticket.domain.dto.comment.CommentModel;
+import com.testproject.ticket.domain.dto.comment.CommentModelCreate;
+import com.testproject.ticket.domain.dto.comment.CommentModelEdit;
+import com.testproject.ticket.domain.dto.ticket.TicketModel;
+import com.testproject.ticket.domain.dto.ticket.TicketModelCreate;
+import com.testproject.ticket.domain.dto.ticket.TicketModelEdit;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;

@@ -1,7 +1,8 @@
-package com.testproject.ticket.domain.dto;
+package com.testproject.ticket.domain.dto.ticket;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.testproject.ticket.domain.TicketStatus;
+import com.testproject.ticket.domain.dto.comment.CommentModel;
 import lombok.Getter;
 import lombok.Setter;
 

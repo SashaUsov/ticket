@@ -1,4 +1,4 @@
-package com.testproject.ticket.domain.dto;
+package com.testproject.ticket.domain.dto.comment;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.testproject.ticket.domain.dto;
+package com.testproject.ticket.domain.dto.comment;
 
 import lombok.Getter;
 import lombok.Setter;

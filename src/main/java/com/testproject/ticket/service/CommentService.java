@@ -1,10 +1,10 @@
 package com.testproject.ticket.service;
 
 import com.testproject.ticket.domain.TicketComment;
-import com.testproject.ticket.domain.dto.CommentModeDelete;
-import com.testproject.ticket.domain.dto.CommentModel;
-import com.testproject.ticket.domain.dto.CommentModelCreate;
-import com.testproject.ticket.domain.dto.CommentModelEdit;
+import com.testproject.ticket.domain.dto.comment.CommentModeDelete;
+import com.testproject.ticket.domain.dto.comment.CommentModel;
+import com.testproject.ticket.domain.dto.comment.CommentModelCreate;
+import com.testproject.ticket.domain.dto.comment.CommentModelEdit;
 import com.testproject.ticket.exception.DataIsNotCorrectException;
 import com.testproject.ticket.exception.EntityNotFoundException;
 import com.testproject.ticket.exception.PermissionToActionIsAbsentException;
