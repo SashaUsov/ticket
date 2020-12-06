@@ -23,7 +23,6 @@ public class CommentModelCreate {
     private LocalDateTime date;
 
     @NotNull
-    @NotEmpty
     private Long ticketId;
 
     @NotNull

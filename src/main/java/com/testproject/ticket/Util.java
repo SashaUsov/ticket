@@ -3,10 +3,7 @@ package com.testproject.ticket;
 import com.testproject.ticket.domain.Ticket;
 import com.testproject.ticket.domain.TicketComment;
 import com.testproject.ticket.domain.TicketStatus;
-import com.testproject.ticket.domain.dto.CommentModel;
-import com.testproject.ticket.domain.dto.TicketModel;
-import com.testproject.ticket.domain.dto.TicketModelCreate;
-import com.testproject.ticket.domain.dto.TicketModelEdit;
+import com.testproject.ticket.domain.dto.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -80,5 +77,17 @@ public class Util {
                 modelEdit.getDate() : entity.getDate();
         updateModel.setDate(date);
         return updateModel;
+    }
+
+    public static TicketComment createNewCommentEntityFromModel(CommentModelCreate model) {
+        var entity = new TicketComment();
+        entity.setCreatedBy(model.getCreatedBy());
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setComment(model.getComment());
+        entity.setDate(LocalDateTime.now());
+        entity.setLastModifiedBy(model.getCreatedBy());
+        entity.setLastModifiedDate(LocalDateTime.now());
+
+        return entity;
     }
 }
