@@ -1,7 +1,12 @@
-package com.testproject.ticket.helpUtil;
+package com.testproject.ticket.utils;
 
 import com.testproject.ticket.domain.Ticket;
+import com.testproject.ticket.domain.TicketComment;
 import com.testproject.ticket.domain.TicketStatus;
+import com.testproject.ticket.domain.dto.comment.CommentModeDelete;
+import com.testproject.ticket.domain.dto.comment.CommentModel;
+import com.testproject.ticket.domain.dto.comment.CommentModelCreate;
+import com.testproject.ticket.domain.dto.comment.CommentModelEdit;
 import com.testproject.ticket.domain.dto.ticket.TicketModeDelete;
 import com.testproject.ticket.domain.dto.ticket.TicketModel;
 import com.testproject.ticket.domain.dto.ticket.TicketModelCreate;
@@ -98,6 +103,90 @@ public class HelpUtil {
         model.setCreatedBy(modelEdit.getCreatedBy());
         model.setId(modelEdit.getId());
         model.setDate(modelEdit.getDate());
+        return model;
+    }
+
+    public static CommentModelCreate getCommentModelCreate() {
+        var model = new CommentModelCreate();
+        model.setComment("comment");
+        model.setCreatedBy("user");
+        model.setDate(LocalDateTime.now());
+        model.setTicketId(1L);
+
+        return model;
+    }
+
+    public static Ticket createTicketEntity(CommentModelCreate model) {
+        var entity = new Ticket();
+        entity.setId(1L);
+        entity.setCreatedBy(model.getCreatedBy());
+        entity.setCreatedDate(model.getDate());
+        entity.setDate(model.getDate());
+        entity.setDescription("description");
+        entity.setLastModifiedBy(model.getCreatedBy());
+        entity.setLastModifiedDate(model.getDate());
+        entity.setComment(new HashSet<>());
+        entity.setStatus(TicketStatus.OPEN);
+
+        return entity;
+    }
+
+    public static TicketComment createTicketComment(CommentModelCreate model, Ticket ticket) {
+        var entity = new TicketComment();
+        entity.setId(1L);
+        entity.setDate(model.getDate());
+        entity.setTicket(ticket);
+        entity.setLastModifiedBy(model.getCreatedBy());
+        entity.setLastModifiedDate(model.getDate());
+        entity.setCreatedDate(model.getDate());
+        entity.setCreatedBy(model.getCreatedBy());
+        entity.setComment(model.getComment());
+
+        return entity;
+    }
+
+    public static CommentModel createCommentModel(TicketComment comment) {
+        var model = new CommentModel();
+        model.setId(comment.getId());
+        model.setLastModifiedDate(comment.getLastModifiedDate());
+        model.setLastModifiedBy(comment.getLastModifiedBy());
+        model.setDate(comment.getDate());
+        model.setCreatedDate(comment.getCreatedDate());
+        model.setCreatedBy(comment.getCreatedBy());
+        model.setComment(comment.getComment());
+
+        return model;
+    }
+
+    public static CommentModelEdit getCommentModelEdit() {
+        var model = new CommentModelEdit();
+        model.setId(1L);
+        model.setComment("new comment");
+        model.setDate(LocalDateTime.now());
+        model.setCreatedBy("test");
+
+        return model;
+    }
+
+    public static TicketComment createTicketComment() {
+        var entity = new TicketComment();
+        entity.setId(1L);
+        entity.setCreatedBy("user");
+        entity.setCreatedDate(LocalDateTime.now());
+        entity.setDate(LocalDateTime.now());
+        entity.setComment("comment");
+        entity.setLastModifiedBy("user");
+        entity.setLastModifiedDate(LocalDateTime.now());
+        entity.setTicket(new Ticket());
+
+        return entity;
+    }
+
+    public static CommentModeDelete createCommentModeDelete() {
+        var model = new CommentModeDelete();
+        model.setCreatedBy("test");
+        model.setId(1L);
+
         return model;
     }
 }

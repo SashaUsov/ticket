@@ -9,14 +9,13 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Collections;
 import java.util.Optional;
 
-import static com.testproject.ticket.helpUtil.HelpUtil.*;
+import static com.testproject.ticket.utils.HelpUtil.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
@@ -50,8 +49,6 @@ class TicketServiceTest {
 
         verify(ticketRepository, times(1)).save(any(Ticket.class));
         assertEquals(ticketModel, model);
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -70,8 +67,6 @@ class TicketServiceTest {
             assertEquals("Ticket not found", ex.getMessage());
         }
         verify(ticketRepository, times(1)).findById(anyLong());
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -85,8 +80,6 @@ class TicketServiceTest {
             assertEquals("You cannot delete a ticket that you are not the author of", ex.getMessage());
         }
         verify(ticketRepository, times(1)).findById(anyLong());
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -98,8 +91,6 @@ class TicketServiceTest {
         ticketService.deleteById(model);
         verify(ticketRepository, times(1)).findById(anyLong());
         verify(ticketRepository, times(1)).deleteById(anyLong());
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -112,8 +103,6 @@ class TicketServiceTest {
             assertEquals("Tickets not found.", ex.getMessage());
         }
         verify(ticketRepository, times(1)).findAll();
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -129,8 +118,6 @@ class TicketServiceTest {
         assertEquals(Collections.singletonList(ticketModel), ticketList);
 
         verify(ticketRepository, times(1)).findAll();
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -150,8 +137,6 @@ class TicketServiceTest {
             assertEquals("Ticket not found", ex.getMessage());
         }
         verify(ticketRepository, times(1)).findById(anyLong());
-
-        Mockito.reset(ticketRepository);
     }
 
     @Test
@@ -171,7 +156,5 @@ class TicketServiceTest {
         verify(ticketRepository, times(1)).save(any(Ticket.class));
 
         assertEquals(expected, actual);
-
-        Mockito.reset(ticketRepository);
     }
 }
